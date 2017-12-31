@@ -1,0 +1,11 @@
+{# templates/registration/register.html.twig #}
+
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {% if form.plainPassword is defined %}
+	    {{ form_row(form.plainPassword.first) }}
+	    {{ form_row(form.plainPassword.second) }}
+	{% endif %}
+
+    <button type="submit">Register!</button>
+{{ form_end(form) }}

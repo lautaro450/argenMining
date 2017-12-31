@@ -1,0 +1,44 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+    access_control:
+    - { path: ^/panel, roles: ROLE_USER }
+    - { path: ^/admin, roles: ROLE_ADMIN }
+
+    # ...
+
+    providers:
+        our_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
+    role_hierarchy:
+        ROLE_ADMIN:      [ROLE_USER]
+
+    firewalls:
+        main:
+            anonymous: ~
+            form_login:
+                login_path: acceso
+                check_path: acceso
+                provider: our_db_provider
+            logout:
+                path:   /logout
+                target: /panel
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # https://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html

@@ -1,0 +1,49 @@
+{% extends "/base-controlPanel.html.twig" %}
+{% block bodyPanel %}
+
+			            <div class="row">
+			                <div class="col-lg-10 text-center">
+			                    <h2>Configuracion</h2>
+			                    <hr class="star-primary">
+			                </div>
+			            <div class="row">
+			                <div class="col-lg-8 col-lg-offset-1">
+			                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+			                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+
+									
+			                    <form name="sentMessage" id="contactForm" novalidate method="post" action="/panel/configuracion">
+			                        <div class="row control-group">
+			                            <div class="form-group col-xs-12 floating-label-form-group controls">
+			                                <label>Wallet Ethereum</label>
+
+			                                <input type="text" class="form-control" placeholder="Direccion ethereum" id="wallet_eth" name="wallet_eth"  value="{{ userInfo.walletEth }}">
+			                                <p class="help-block text-danger"></p>
+			                            </div>
+			                        </div>
+			                        <div class="row control-group">
+			                            <div class="form-group col-xs-12 floating-label-form-group controls">
+			                                <label>Wallet Ethereum classic</label>
+
+			                                <input type="text" class="form-control" placeholder="Direccion ethereum classic" id="wallet_etc" name="wallet_etc"  value="{{ userInfo.walletEtc }}">
+			                                <p class="help-block text-danger"></p>
+			                            </div>
+			                        </div>
+			                        <div class="row control-group">
+			                            <div class="form-group col-xs-12 floating-label-form-group controls">
+			                                <label>Wallet Pascal lite</label>
+
+			                                <input type="text" class="form-control" placeholder="Direccion pascal lite" id="wallet_pasl" name="wallet_pasl"  value="{{ userInfo.walletPasl }}">
+			                                <p class="help-block text-danger"></p>
+			                            </div>
+			                        </div>
+			                        <div id="success"></div>
+			                        <div class="row" style="margin-top:20px;">
+			                            <div class="form-group col-xs-12">
+			                                <input type="submit" class="btn btn-success btn-lg" value="Modificar datos" />
+			                            </div>
+			                        </div>
+								</form>
+			                </div> 
+
+{% endblock bodyPanel %}

@@ -1,0 +1,67 @@
+#index:
+#    path: /
+#    defaults: { _controller: 'App\Controller\DefaultController::index' }
+# the "app_lucky_number" route name is not important yet
+admin:
+  path: /admin
+  controller: App\Controller\adminController:indexAction
+admin_contrato_asignar:
+  path: /admin/asignarContrato
+  controller: App\Controller\ContractController::asignarContrato
+admin_contrato_modificar:
+  path: /admin/contratos/modificar
+  controller: App\Controller\contractController::modificarContrato
+admin_contrato_eliminar:
+  path: /admin/contratos/eliminar
+  controller: App\Controller\contractController::eliminarContrato
+testing:
+  path: /testing/test/{userId}
+  controller: App\Controller\ContractController::testGetUser
+home:
+  path: /
+  controller: App\Controller\HomeController::indexAction
+logout:
+  path: /logout
+app_lucky_number:
+    path: /lucky/number
+    controller: App\Controller\LuckyController::number
+system_panel:
+    path: /panel
+    controller: App\Controller\panelController::indexAction
+test:
+  path:       /helper/callController
+  controller: App\Controller\HelperController::callControllerAction
+  methods:    [POST, HEAD]
+register:
+    path: /register
+    controller: App\Controller\RegistrationController::registerAction
+acceso:
+    path: /acceso
+    controller: App\Controller\accesoController::login
+soporte_tecnico:
+    path: /panel/ayuda
+    controller: App\Controller\panelController::soporteTecnico
+panel_datos:
+    path: /panel/datos
+    controller: App\Controller\panelController::datos
+panel_configuracion:
+    path: /panel/configuracion
+    controller: App\Controller\panelController::configuracion
+panel_eth:
+    path: /panel/ETH
+    controller: App\Controller\panelController::eth
+panel_etc:
+    path: /panel/ETC
+    controller: App\Controller\panelController::etc
+panel_pasl:
+    path: /panel/PASL
+    controller: App\Controller\panelController::pasl
+panel_zec:
+    path: /panel/ZEC
+    controller: App\Controller\panelController::zec
+panel_btg:
+    path: /panel/BTG
+    controller: App\Controller\panelController::btg
+panel_lbry:
+    path: /panel/LBRY
+    controller: App\Controller\panelController::lbry

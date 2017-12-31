@@ -1,0 +1,59 @@
+{% extends "/base-adminPanel.html.twig" %}
+{% block bodyPanel %}
+{% if users is defined %}
+	<div class="row">
+	    <div class="col-lg-10 text-center">
+	        <h2>ADMIN PANEL - Asignar contrato</h2>
+	        <hr class="star-primary">
+	    </div>
+	</div>
+	<div class="row">
+		<div style="color:#000;" class="col-lg-8">
+			<form method="post" action="/admin/asignarContrato">
+				<label style="color:#fff;" for="username">Usuario</label>
+				<select id="username" name="id">
+					{% for user in users %}
+						<option value="{{ user.id }}">{{ user.username }}</option>
+					{% endfor %}
+				</select>
+				<input type="submit" value="Seleccionar cliente" />
+			</form>
+		</div>
+	</div>
+{% endif %}
+{% if userSelected is defined %}
+	<div class="row">
+	    <div class="col-lg-10 text-center">
+	        <h2>ADMIN PANEL - Asignar contrato</h2>
+	        <hr class="star-primary">
+	    </div>
+	</div>
+	<div class="row">
+		<div style="color:#000;" class="col-lg-8">
+			<form method="post" action="/admin/asignarContrato">
+				<label style="color:#fff;" for="username">Usuario</label>
+				<select id="username" name="id">
+						<option value="{{ userSelected.id }}"  selected>{{ userSelected.username }}</option>
+				</select><br>
+				<label style="color:#fff;" for="currency">Currency</label>
+				<select id="currency" name="currency">
+					<option value="ETH">Ethereum</option>
+					<option value="ETC">Ethereum Classic</option>
+					<option value="PASL">Pascal Lite</option>
+					<option value="BTG">Bitcoin Gold</option>
+					<option value="LBRY">LBC</option>
+					<option value="ZEC">ZCash</option>
+				</select><br>
+				<label style="color:#fff;" for="hashrate">HashRate</label>
+				<select id="hashrate" name="hashrate">
+					{% for i in 1..100 %}
+						<option value="{{i}}">{{i}} MH/S</option>
+					{% endfor %}
+				</select><br>
+
+				<input type="submit" value="Seleccionar cliente" />
+			</form>
+		</div>
+	</div>
+{% endif %}
+{% endblock bodyPanel %}

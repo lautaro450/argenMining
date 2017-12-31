@@ -1,0 +1,180 @@
+{% extends "/base.html.twig" %}
+{% block navegator %} {% endblock %}
+{% block body %}
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+input ::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+input ::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+input :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+input:focus {
+  outline: 0 transparent solid;
+}
+input:focus ::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+input:focus ::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+input:focus :-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.login-form {
+    margin-left: auto;
+    margin-right: auto; 
+  min-height: 10rem;
+  max-width: 20%;
+  display:table-cell;
+  vertical-align:middle;    
+  padding: .5rem;
+}
+
+.login-text {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: .5rem;
+  text-align: center;
+}
+.login-text .fa-stack-1x {
+  color: black;
+}
+
+.login-username, .login-password {
+  background: transparent;
+  border: 0 solid;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  padding: .5rem;
+  -webkit-transition: 250ms background ease-in;
+  transition: 250ms background ease-in;
+  width: calc(25% - 3rem);
+}
+.login-username:focus, .login-password:focus {
+  background: white;
+  color: black;
+  -webkit-transition: 250ms background ease-in;
+  transition: 250ms background ease-in;
+}
+
+.login-forgot-pass {
+  bottom: 0;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 75%;
+  left: 0;
+  opacity: 0.6;
+  padding: .5rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.login-forgot-pass:hover {
+  opacity: 1;
+}
+
+.login-submit {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  -webkit-transition: 250ms background ease-in;
+  transition: 250ms background ease-in;
+}
+.login-submit:hover, .login-submit:focus {
+  background: white;
+  color: black;
+  -webkit-transition: 250ms background ease-in;
+  transition: 250ms background ease-in;
+}
+
+[class*=underlay] {
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.underlay-photo {
+  -webkit-animation: hue-rotate 6s infinite;
+          animation: hue-rotate 6s infinite;
+  background: url("https://4.bp.blogspot.com/-3aBTdvTvgqM/VNcb2gxRaTI/AAAAAAABccs/PPbDPAL-6Bo/s0/Bitcoin_UHD.jpg");
+  background-size: cover;
+  -webkit-filter: grayscale(30%);
+  z-index: -1;
+}
+
+.underlay-black {
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+@-webkit-keyframes hue-rotate {
+  from {
+    -webkit-filter: grayscale(30%) hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: grayscale(30%) hue-rotate(360deg);
+  }
+}
+
+@keyframes hue-rotate {
+  from {
+    -webkit-filter: grayscale(30%) hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: grayscale(30%) hue-rotate(360deg);
+  }
+}
+</style>
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<form class="login-form" action="{{ path('acceso') }}" method="post">
+  <p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-lock fa-stack-1x"></i>
+    </span>
+  </p>
+  <input type="email" class="login-username" id="username" name="_username" autofocus="true" required="true" placeholder="Email" />
+  <input type="password" class="login-password" id="password" name="_password" required="true" placeholder="Password" />
+          <input type="hidden" name="_target_path" value="/panel" />
+  <input type="submit" name="Login" value="Acceder" class="login-submit" />
+</form>
+
+{% if app.user %}
+    {{ app.user.username }} 
+{% endif %}
+<a href="#" style="font-size:16px;" class="login-forgot-pass">Olvido su clave?</a>
+<div class="underlay-photo"></div>
+<div class="underlay-black"></div>
+	{% endblock body %}

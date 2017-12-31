@@ -1,0 +1,143 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost
+-- Tiempo de generación: 31-12-2017 a las 00:39:04
+-- Versión del servidor: 5.6.34
+-- Versión de PHP: 7.1.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `btcargentina`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `app_contract`
+--
+
+CREATE TABLE `app_contract` (
+  `id` int(11) NOT NULL,
+  `currency` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `hashrate` double NOT NULL,
+  `state` int(11) NOT NULL,
+  `username_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `app_users`
+--
+
+CREATE TABLE `app_users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `plain_password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `firstName` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `lastName` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `roles` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `wallet_eth` varchar(124) COLLATE utf8_unicode_ci NOT NULL,
+  `wallet_etc` varchar(124) COLLATE utf8_unicode_ci NOT NULL,
+  `wallet_pasl` varchar(124) COLLATE utf8_unicode_ci NOT NULL,
+  `wallet_zcash` varchar(124) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `app_users`
+--
+
+INSERT INTO `app_users` (`id`, `username`, `password`, `is_active`, `plain_password`, `firstName`, `lastName`, `address`, `roles`, `wallet_eth`, `wallet_etc`, `wallet_pasl`, `wallet_zcash`) VALUES
+(1, 'test@test.com', '$2y$13$Y0HZwDuaLfK82C1nnb9nUuqXsPtRFQNMKBN1dPu6fuv9oq4ydS0Aq', 1, 'asdasd', '', '', '', '', '', '', '', ''),
+(3, 'test1@test1.com', '$2y$13$JjQ2nH4ZHsOSEb/xQ1Ss7uYkGk4BTEvyIlJUdApCeeCJt2ayD0WZ.', 1, 'asdasd', '', '', '', '', '', '', '', ''),
+(4, 'dante@test.com', '$2y$13$If5OZ.gTVfqhKgtkk7Y2TurKXz5xwAs2n5hwc06Lcv1Dar79wHyxy', 1, 'aAsSdD11', '', '', '', 'ROLE_ADMIN', '', '', '', ''),
+(5, 'elektron@test.com', '$2y$13$If5OZ.gTVfqhKgtkk7Y2TurKXz5xwAs2n5hwc06Lcv1Dar79wHyxy', 1, 'aAsSdD11', '', '', '', 'ROLE_USER', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `migration_versions`
+--
+
+CREATE TABLE `migration_versions` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migration_versions`
+--
+
+INSERT INTO `migration_versions` (`version`) VALUES
+('20171220050026'),
+('20171220050917'),
+('20171220053220'),
+('20171220053402'),
+('20171221044151'),
+('20171221053230'),
+('20171223003750'),
+('20171223004025'),
+('20171223004032'),
+('20171223141136'),
+('20171223142459'),
+('20171224044249'),
+('20171224044255'),
+('20171224050445'),
+('20171225054507'),
+('20171230125614'),
+('20171230130018'),
+('20171230231816');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `app_contract`
+--
+ALTER TABLE `app_contract`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username_id` (`username_id`);
+
+--
+-- Indices de la tabla `app_users`
+--
+ALTER TABLE `app_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_C2502824F85E0677` (`username`);
+
+--
+-- Indices de la tabla `migration_versions`
+--
+ALTER TABLE `migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `app_contract`
+--
+ALTER TABLE `app_contract`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `app_users`
+--
+ALTER TABLE `app_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `app_contract`
+--
+ALTER TABLE `app_contract`
+  ADD CONSTRAINT `FK_userContract` FOREIGN KEY (`username_id`) REFERENCES `app_users` (`id`);

@@ -1,0 +1,35 @@
+{% extends "/base-controlPanel.html.twig" %}
+{% block bodyPanel %}
+<style>
+.currency-box{
+	margin-left:1%;
+	margin-bottom:1%;
+	min-height:167px;
+	background-color:#394264;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+.currency-box-text{
+	color:#18bc9c;	
+}
+</style>
+
+	    <div class="col-lg-10 text-center">
+	        <h2>Panel de control</h2>
+	        <hr class="star-primary">
+				<p>Actualmente usted cuenta con los siguientes servicios contratados:</p>
+	</div>
+		<div id="row">
+			<div class="col-lg-9 col-lg-offset-1">
+			{% for contract in contracts %}
+				<div class="currency-box col-lg-3 text-center">
+					<a href="/panel/{{ contract.currency }}">
+					<img width="100px" 	height="100px" src="/img/logos/{{ contract.currency }}.png"/>				<p class="currency-box-text">{{ contract.currency }}</p><p>{{contract.hashrate}} H/s</p></a>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+
+{% endblock bodyPanel %}

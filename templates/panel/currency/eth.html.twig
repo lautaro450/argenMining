@@ -1,0 +1,104 @@
+{% extends "/base-controlPanel.html.twig" %}
+{% block bodyPanel %}
+</script>
+<style>
+#myChart{
+	height:400px !important;
+	width:400px !important;
+	margin: 0 auto;
+	color: white;
+	font-weight:bold;
+}
+.currency-box{
+	margin-left:1%;
+	margin-bottom:1%;
+	min-height:167px;
+	background-color:#394264;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+.currency-box-text{
+	color:#18bc9c;	
+}
+</style>
+
+	    <div class="col-lg-10 text-center">
+	        <h2>Ethereum</h2>
+	        <hr class="star-primary">
+	</div>
+				<div class="currency-box col-lg-8 text-center">
+				<p>Balance de cuenta: {{ data.data }}</p><br>
+				<canvas align="center" style="width:400px; height:400px;" id="myChart" width="400" height="400"></canvas>
+
+				</div>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var dataLabel = [];
+var dataHashrate = new Array();
+{% for datebuff in datetime %}
+	{% if loop.index < 10 %}
+		timeBuff = moment.unix({{datebuff}});
+		dataLabel.unshift(timeBuff.format('MM/DD/YYYY H:m'));
+	{% endif %}
+{% endfor %}
+{% for hashrateInfo in hashrate %}
+	{% if loop.index < 10 %}
+		dataHashrate.unshift({{hashrateInfo}});
+	{% endif %}
+{% endfor %}
+console.log(dataLabel);
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: dataLabel,
+        datasets: [{
+            label: ' H/S',
+            data: dataHashrate,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    	legend: {
+    		labels: {
+    			fontColor: "white",
+    			fontSize: 26
+    		}
+    	},
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 22,
+                    beginAtZero:false
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 22,
+                    beginAtZero:false
+                }
+            }]
+        }
+    }
+});
+</script>
+{% endblock bodyPanel %}
