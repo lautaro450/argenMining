@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Contract;
+use App\Entity\Transaction;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -48,6 +49,40 @@ class panelController extends Controller
     	$userInfo = $repository->findOneBy(['id' => $userId]);
     	$response = new Response($userInfo->username);
         return $response;
+    }
+
+    public function comprar($currency, Request $request, userInterface $user)
+    {
+        $helper = $this->get('Helper');
+    	$mediosPago = $request->request->get('mediosPago');
+    	if(is_null($currency) == true)
+    	{
+
+    	}
+    	else
+    	{
+    		if(is_null($mediosPago) == false)
+    		{
+    			$hashrate = $request->request->get('hashrate');
+    			$hashrateString = $hashrate.' MH/S '.$currency;
+    			$transaction = new Transaction();
+    			$transaction->setType('Factura');
+    			$transaction->setComment($hashrateString);
+    			$transaction->setState('Pendiente');
+    			$transaction->setFechaSolicitud();
+    			$transaction->setUserId($user->getId());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($transaction);
+                $em->flush();
+    			return $this->render('panel/comprar.html.twig',
+    					array(
+    						'alert' => 'Pedido exitoso'
+    						));
+    		}
+    		return $this->render('panel/comprar.html.twig', array(
+    				'currencySelected' => $currency));	
+
+    	}
     }
 
     public function soporteTecnico()

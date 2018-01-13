@@ -1,0 +1,56 @@
+{% extends "/base-controlPanel.html.twig" %}
+{% block bodyPanel %}
+{% if currencySelected is defined %}
+	<div class="row">
+	    <div class="col-lg-10 text-center">
+	        <h2>Comprar - Caracteristicas de servicio</h2>
+	        <hr class="star-primary">
+	    </div>
+	</div>
+	<div class="row">
+		<div style="color:#000;" class="col-lg-8">
+			<form method="post" action="/panel/comprar/{{currencySelected}}">
+				<label style="color:#fff;" for="username">Usuario</label>
+				<label style="color:#fff;" for="currency">Currency</label>
+				<select id="currency" name="currency">
+					<option value="{{ currencySelected }}" disabled selected>{{ currencySelected }}</option>
+				</select><br>
+				<label style="color:#fff;" for="hashrate">HashRate</label>
+				<select id="hashrate" name="hashrate">
+					{% for i in 1..100 %}
+						<option value="{{i}}">{{i}} MH/S</option>
+					{% endfor %}
+				</select><br>
+				<select id="mediosPago" name="mediosPago">
+					<option value="cd">RapiPago / PagoFacil</option>
+					<option value="cd">Otro</option>
+				</select><br>
+				<p style="color:white;">Precio: <span id="precio" style="color:#FCBF49;"></span></p>
+
+
+				<input type="submit" value="Contratar servicio" />
+			</form>
+		</div>
+	</div>
+{% endif %}
+
+<script>
+$("#hashrate").change(function(){
+	var hashrate = $("#hashrate").val();
+	var currency = $("#currency").val();
+	currency == "ethereum"
+	{
+		var priceEthereum = 25;
+		var price = (hashrate*priceEthereum)
+		$("#precio").html(price + '(USD)');
+	}
+});
+$("#mediosPago").change(function(){
+	var mediosPago = $("#mediosPago").val();
+	mediosPago == 'cd'
+	{
+		window.location.replace('https://www.cuentadigital.com/api.php?id=501930&codigo=eth&precio=100&m0=&m1=&m2=&m3=&m4=&venc=7&concepto=Contrato anual argenMining&moneda=ARS&site=')
+	}
+});
+</script>
+{% endblock bodyPanel %}

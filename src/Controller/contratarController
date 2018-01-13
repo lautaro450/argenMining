@@ -13,45 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ContractController extends Controller
 {
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-
-        $user = new User();
-        $firstName = $request->request->get('firstName');
-        $lastName = $request->request->get('lastName');
-        $email = $request->request->get('email');
-        $plainPassword = $request->request->get('password');
-
-        if(empty($firstName) == false && empty($lastName) == false && empty($email) == false && empty($plainPassword) == false)
-        {            
-            $password = $passwordEncoder->encodePassword($user, $plainPassword);
-            $user->setPassword($password);
-            $user->setUsername($email);
-            $user->setFirstName($firstName);
-            $user->setLastName($lastName);
-            $user->setPlainPassword($plainPassword);
-            $user->setRoles('ROLE_USER');
-
-            // 4) save the User!
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            return $this->render('acceso/index.html.twig', array(
-                'registro' => 'Se ha registrado con exito'
-
-                ));
-        }
-        else
-        {
-            return $this->render('contratar/contratar.html.twig');
-        }
-
-
-    }
 
     public function testGetUser($userId)
     {

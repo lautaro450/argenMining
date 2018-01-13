@@ -38,12 +38,21 @@ register:
 acceso:
     path: /acceso
     controller: App\Controller\accesoController::login
+contratar:
+    path: /contratar
+    controller: App\Controller\ContractController::index
+caracteristicas:
+    path: /caracteristicas
+    controller: App\Controller\HomeController::caracteristicas
 soporte_tecnico:
     path: /panel/ayuda
     controller: App\Controller\panelController::soporteTecnico
 panel_datos:
     path: /panel/datos
     controller: App\Controller\panelController::datos
+panel_comprar:
+    path: /panel/comprar/{currency}
+    controller: App\Controller\panelController::comprar
 panel_configuracion:
     path: /panel/configuracion
     controller: App\Controller\panelController::configuracion

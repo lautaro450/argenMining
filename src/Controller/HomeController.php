@@ -15,5 +15,9 @@ class HomeController extends Controller
     {
 		return $this->render('home/index.html.twig');
     }
+    public function caracteristicas()
+    {
+		return $this->render('home/caracteristicas.html.twig');
+    }
 }
 ?>

@@ -155,15 +155,22 @@ input:focus :-ms-input-placeholder {
   }
 }
 </style>
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
 <form class="login-form" action="{{ path('acceso') }}" method="post">
   <p class="login-text">
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-lock fa-stack-1x"></i>
     </span>
+{% if error is defined %}
+  {% if error is null %}
+
+  {% else %}
+    <p align="center" style="text-align:center;color:red;">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+  {% endif %}
+{% endif %}
+{% if registro is defined %}
+    <p align="center" style="text-align:center;color:green;">{{ registro }}</p>
+{% endif %}
   </p>
   <input type="email" class="login-username" id="username" name="_username" autofocus="true" required="true" placeholder="Email" />
   <input type="password" class="login-password" id="password" name="_password" required="true" placeholder="Password" />
@@ -171,7 +178,7 @@ input:focus :-ms-input-placeholder {
   <input type="submit" name="Login" value="Acceder" class="login-submit" />
 </form>
 
-{% if app.user %}
+{% if app.user is not null %}
     {{ app.user.username }} 
 {% endif %}
 <a href="#" style="font-size:16px;" class="login-forgot-pass">Olvido su clave?</a>

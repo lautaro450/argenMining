@@ -41,23 +41,23 @@ class User implements UserInterface, \Serializable
     public $lastName;
 
     /**
-     * @ORM\Column(name="address", type="string", length=80)
+     * @ORM\Column(name="address", nullable=true, type="string", length=80)
      */
     public $address;
     /**
-     * @ORM\Column(name="wallet_eth", type="string", length=124)
+     * @ORM\Column(name="wallet_eth", nullable=true, type="string", length=124)
      */
     public $walletEth;
     /**
-     * @ORM\Column(name="wallet_etc", type="string", length=124)
+     * @ORM\Column(name="wallet_etc", nullable=true, type="string", length=124)
      */
     public $walletEtc;
     /**
-     * @ORM\Column(name="wallet_pasl", type="string", length=124)
+     * @ORM\Column(name="wallet_pasl", nullable=true, type="string", length=124)
      */
     public $walletPasl;
     /**
-     * @ORM\Column(name="wallet_zcash", type="string", length=124)
+     * @ORM\Column(name="wallet_zcash", nullable=true, type="string", length=124)
      */
     public $walletZcash;
 

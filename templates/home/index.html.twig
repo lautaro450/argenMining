@@ -1,21 +1,53 @@
 {% extends "/base.html.twig" %}
 {% block body %}
+
 			{% block slider %}
-			    <!-- Header -->
-			    <header>
-			        <div class="container">
-			            <div class="row">
-			                <div class="col-lg-12">
-			                    <img class="img-responsive" src="img/cMining.jpg" alt="">
-			                    <div class="intro-text">
-			                        <span class="name">SLIDER</span>
-			                        <hr class="star-light">
-			                        <span class="skills">Descripcion</span>
-			                    </div>
-			                </div>
-			            </div>
-			        </div>
-			    </header>
+
+
+	<section class="cd-hero" style="padding-top:82px;padding-bottom:0px;">
+		<ul class="cd-hero-slider autoplay">
+			<li class="selected">
+				<div class="cd-full-width slider2">
+					<h2>Compra en Argen<span style="color:#FFA420">Mining</span></h2>
+					<p style="font-weight:bold;">Inversiones en Mining Cloud desde Argentina para el mundo.</p>
+					<a href="#0" class="cd-btn">Contratar</a>
+				</div> <!-- .cd-full-width -->
+			</li>
+			<li>
+				<div class="cd-full-width slider1">
+					<h2 style="color:#FF8420">Ethereum mining</h2>
+					<p>Minar ethereum nunca fue mas facil.</p>
+					<a href="/faq" class="cd-btn">Saber mas</a>
+				</div> <!-- .cd-full-width -->
+			</li>
+		</ul> <!-- .cd-hero-slider -->
+	</section> <!-- .cd-hero -->
+
+
+<div id="gm-home-3" style="display:block;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 gm-home-hardware">
+                <h3><span></span>Su hardware<br>ya está funcionando</h3>
+                <p>No se complique con el montaje en su propio hogar de equipos ruidosos que desprenden mucho calor. ¡Nosotros ponemos a su disposición el hardware más rápido para la minería de Criptomonedas, que ya está en funcionamiento!</p>
+                <a href="/caracteristicas" class="btn" title="Caracteristicas del servicio">Caracteristicas del servicio</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 gm-home-coins">
+                <h3><span></span>Mine criptomonedas<br>alternativas</h3>
+                <p>¡Puede minar cualquier criptomoneda que esté disponible en nuestro catálogo! Cambie la distribución de su poder de minado sobre la marcha, para todas las monedas, usando nuestro sitio web de minería de Criptomonedas.</p>
+                <a href="/contratar" class="btn" title="Contratar ahora">CONTRATAR AHORA</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 gm-home-payout">
+                <h3><span></span>Consiga su primer<br>pago hoy</h3>
+                <p>Su inversión generará pagos diarios, que recibirá en el monedero que usted haya designado. ¡Pruebe ya nuestra plataforma de minería de Bitcoin!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="js/main.js"></script>
 			{% endblock slider %}
 			{% block footer %}
 			    <footer>
